@@ -30,6 +30,7 @@ namespace MechanicShop.Domain.Workorders
             Error.Conflict("WorkOrderErrors.TimingReadonly",
                 $"WorkOrder '{id}': Can't Modify timing when WorkOrder status is '{state}'.");
 
+
         public static Error LaborIdEmpty(string id) => 
             Error.Validation("WorkOrderErrors.LaborIdEmpty",$"WorkOrder '{id}': Labor Id is empty");
 
