@@ -80,6 +80,7 @@ namespace MechanicShop.Domain.Common.Results
         }
 
 
+        //Implicit Convert Value
         public static implicit operator Result<TValue>(TValue value)
             => new(value);
 

@@ -9,7 +9,7 @@ namespace MechanicShop.Domain.Employees
         public string FirstName { get;}
         public string LastName { get;}
         public string FullName => $"{FirstName} {LastName}";
-        public Role Role { get; private set; } //Role In Identity Clasee
+        public Role Role { get; private set; } 
 
         private Employee() { }
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Buffers.Text;
-
-namespace MechanicShop.Domain.Common.Results
+﻿namespace MechanicShop.Domain.Common.Results
 {
 
     //{
@@ -9,9 +6,6 @@ namespace MechanicShop.Domain.Common.Results
     //  "description": "NotFound Error.",
     //  "type": "NotFound"
     //}
-  
-
-
     public readonly record struct Error
     {
         private Error(string code, string description, ErrorKind type)
