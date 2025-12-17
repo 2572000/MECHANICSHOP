@@ -9,12 +9,12 @@ namespace MechanicShop.Domain.RepairTasks.Parts
         public int Quantity { get; private set; }
         public decimal Cost { get; private set; }
 
-        public Part()
+        private Part()
         {
             
         }
 
-        public Part(Guid id,string name,int quantity,decimal cost)
+        private Part(Guid id,string name,int quantity,decimal cost)
             :base(id)
         {
             Name = name;

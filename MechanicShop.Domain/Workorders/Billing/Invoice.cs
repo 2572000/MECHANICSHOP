@@ -21,12 +21,12 @@ namespace MechanicShop.Domain.Workorders.Billing
         public IReadOnlyList<InvoiceLineItem> LineItems => _lineItems;
 
 
-        public Invoice()
+        private Invoice()
         {
             
         }
 
-        public Invoice(Guid id, Guid workOrderId, DateTimeOffset issuedAt, List<InvoiceLineItem> lineItems, decimal discountAmount, decimal taxAmount)
+        private Invoice(Guid id, Guid workOrderId, DateTimeOffset issuedAt, List<InvoiceLineItem> lineItems, decimal discountAmount, decimal taxAmount)
             :base(id)
         {
             WorkOrderId = workOrderId;

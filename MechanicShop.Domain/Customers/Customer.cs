@@ -15,8 +15,8 @@ namespace MechanicShop.Domain.Customers
         private readonly List<Vehicle> _vehicles = [];
         public IEnumerable<Vehicle> Vehicles => _vehicles.AsReadOnly();
 
-        public Customer(){}
-        public Customer(Guid id,string name,string phoneNumber,string email,List<Vehicle> vehicles):base(id)
+        private Customer(){}
+        private Customer(Guid id,string name,string phoneNumber,string email,List<Vehicle> vehicles):base(id)
         {
             Name = name;
             PhoneNumber = phoneNumber;

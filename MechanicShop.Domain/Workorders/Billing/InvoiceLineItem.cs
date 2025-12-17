@@ -15,12 +15,12 @@ namespace MechanicShop.Domain.Workorders.Billing
         public int Quantity { get; }
         public decimal UnitPrice { get; }
         public decimal LineTotal => Quantity * UnitPrice;
-        public InvoiceLineItem()
+        private InvoiceLineItem()
         {
             
         }
 
-        public InvoiceLineItem(Guid invoiceId,int lineNumber,string description,int quantity,decimal unitPrice)
+        private InvoiceLineItem(Guid invoiceId,int lineNumber,string description,int quantity,decimal unitPrice)
         {
             InvoiceId=invoiceId;
             LineNumber=lineNumber;

@@ -9,12 +9,12 @@ namespace MechanicShop.Domain.Identity
         public string? Token { get;}
         public string? UserId { get;}
 
-        public RefreshToken()
+        private RefreshToken()
         {
             
         }
 
-        public RefreshToken(Guid id,string token,string userId,DateTimeOffset expiresOnUts)
+        private RefreshToken(Guid id,string token,string userId,DateTimeOffset expiresOnUts)
             :base(id)
         {
             Token = token;

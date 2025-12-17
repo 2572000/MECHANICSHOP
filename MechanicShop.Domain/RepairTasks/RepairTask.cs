@@ -15,12 +15,12 @@ namespace MechanicShop.Domain.RepairTasks
         private readonly List<Part> _parts = [];
         public IEnumerable<Part> Parts => _parts.AsReadOnly();
 
-        public RepairTask()
+        private RepairTask()
         {
             
         }
 
-        public RepairTask(Guid id,string name,decimal laborCost, RepairDurationInMinutes estimatedDurationInMins,List<Part> parts)
+        private RepairTask(Guid id,string name,decimal laborCost, RepairDurationInMinutes estimatedDurationInMins,List<Part> parts)
             :base(id)
         {
             Name = name;

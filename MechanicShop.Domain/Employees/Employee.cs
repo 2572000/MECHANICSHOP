@@ -11,9 +11,9 @@ namespace MechanicShop.Domain.Employees
         public string FullName => $"{FirstName} {LastName}";
         public Role Role { get; private set; } //Role In Identity Clasee
 
-        public Employee() { }
+        private Employee() { }
 
-        public Employee(Guid id,string firstName,string lastName,Role role):base(id)
+        private Employee(Guid id,string firstName,string lastName,Role role):base(id)
         {
             FirstName = firstName;
             LastName = lastName;

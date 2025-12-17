@@ -11,14 +11,14 @@ namespace MechanicShop.Domain.Customers.Vehicles
         public string LicensePlate { get; private set; }
         public int Year { get; private set; }
         public Customer? Customer { get; set; }
-        public string VehicleInfo => $"{Make} | {Model} | {Year}";
+        public string VehicleInfo => $" {Year} | {Make} | {Model}.";
 
-        public Vehicle()
+        private Vehicle()
         {
             
         }
 
-        public Vehicle(Guid id,string make,string model,string licensePlate,int year):base(id)
+        private Vehicle(Guid id,string make,string model,string licensePlate,int year):base(id)
         {
             Make = make;
             Model = model;

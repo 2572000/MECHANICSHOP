@@ -29,12 +29,12 @@ namespace MechanicShop.Domain.Workorders
 
         public bool IsEditable => State is not (WorkOrderState.Completed or WorkOrderState.Cancelled or WorkOrderState.InProgress);
 
-        public Workorder()
+        private Workorder()
         {
 
         }
 
-        public Workorder(
+        private Workorder(
             Guid id,
             Guid laborId, Guid vehicleId, DateTimeOffset startAt, DateTimeOffset endAt,
             Spot spot, WorkOrderState state, List<RepairTask> repairTasks)

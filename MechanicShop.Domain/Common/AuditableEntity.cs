@@ -3,10 +3,10 @@
     // Base class for entities that need audit information, inherits from Entity
     public abstract class AuditableEntity : Entity
     {
-        public AuditableEntity() { }
+        protected AuditableEntity() { }
 
         // Constructor that allows setting the Id and passes it to the base Entity class
-        public AuditableEntity(Guid id) : base(id)
+        protected AuditableEntity(Guid id) : base(id)
         { }
 
         // The UTC timestamp when the entity was created
