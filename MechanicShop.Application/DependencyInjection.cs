@@ -15,6 +15,9 @@ namespace MechanicShop.Application
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 cfg.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
                 cfg.AddOpenBehavior(typeof(CachingBehavior<,>));
+                cfg.AddOpenBehavior(typeof(PerformanceBehaviour<,>));
+                cfg.AddOpenBehavior(typeof(LoggingBehaviour<>));
+                cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
             return services;
