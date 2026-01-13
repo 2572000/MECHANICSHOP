@@ -112,5 +112,5 @@ namespace MechanicShop.Application.Features.WorkOrders.Commands.UpdateWorkOrderR
             return Result.Updated;
         }
     }
-    }
 }
+

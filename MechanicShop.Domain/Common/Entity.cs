@@ -1,4 +1,6 @@
-﻿namespace MechanicShop.Domain.Common
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MechanicShop.Domain.Common
 {
     // Base abstract class for all entities in the domain
     public abstract class Entity
@@ -8,7 +10,8 @@
 
         // A list to store domain events associated with this entity
         private readonly List<DomainEvent> _domainEvents = [];
-
+        [NotMapped]
+        public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
         // Parameterless constructor for Entity Framework (EF) to materialize entities
         protected Entity() { }
 
