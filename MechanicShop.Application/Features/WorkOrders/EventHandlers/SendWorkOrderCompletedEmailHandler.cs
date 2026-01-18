@@ -28,8 +28,17 @@ namespace MechanicShop.Application.Features.WorkOrders.EventHandlers
                 _logger.LogError("WorkOrder with Id '{WorkOrderId}' does not exist.", notification.WorkOrderId);
                 return;
             }
-            await _notificationService.SendEmailAsync(workOrder.Vehicle?.Customer?.Email!, ct);
-            await _notificationService.SendSmsAsync(workOrder.Vehicle?.Customer?.PhoneNumber!, ct);
+
+            var emailSubject = "Vehicle Service Complete";
+            var emailBody = $"<h1>Hello {workOrder.Vehicle?.Customer?.Name}</h1>" +
+                            $"<p>Your vehicle service for {workOrder.Vehicle?.LicensePlate} is complete. You may collect it from the shop.</p>";
+
+            var smsMessage = $"Hello {workOrder.Vehicle?.Customer?.Name}, your vehicle service for {workOrder.Vehicle?.LicensePlate} is complete.";
+
+
+
+            await _notificationService.SendEmailAsync(workOrder.Vehicle?.Customer?.Email!, emailSubject, emailBody, ct);
+            await _notificationService.SendSmsAsync(workOrder.Vehicle?.Customer?.PhoneNumber!, smsMessage, ct);
         }
     }
 }

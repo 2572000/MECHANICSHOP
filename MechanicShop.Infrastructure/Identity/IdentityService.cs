@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MechanicShop.Infrastructure.Identity
 {
-    internal class IdentityService(UserManager<AppUser> userManager,
+    public class IdentityService(UserManager<AppUser> userManager,
         IUserClaimsPrincipalFactory<AppUser> userClaims,
         IAuthorizationService authorizationService) : IIdentityService
     {

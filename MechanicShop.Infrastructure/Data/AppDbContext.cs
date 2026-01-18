@@ -15,24 +15,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MechanicShop.Infrastructure.Data
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator)
-        : IdentityDbContext<AppUser>(options), IAppDbContext
+
+    public class AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator) : IdentityDbContext<AppUser>(options), IAppDbContext
     {
-        public DbSet<Employee> Employees => Set<Employee>();
-
         public DbSet<Customer> Customers => Set<Customer>();
-
-        public DbSet<Vehicle> Vehicles => Set<Vehicle>();
-
+        public DbSet<Part> Parts => Set<Part>();
         public DbSet<RepairTask> RepairTasks => Set<RepairTask>();
-
-        public DbSet<Part> Parts =>Set<Part>();
+        public DbSet<Vehicle> Vehicles => Set<Vehicle>();
 
         public DbSet<Workorder> Workorders => Set<Workorder>();
 
         public DbSet<Invoice> Invoices => Set<Invoice>();
+        public DbSet<Employee> Employees => Set<Employee>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
-        public DbSet<RefreshToken> RefreshTokens =>Set<RefreshToken>();
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            await DispatchDomainEventsAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,32 +41,25 @@ namespace MechanicShop.Infrastructure.Data
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
-        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            await DispatchDomainEventsAsync(cancellationToken);
-            return await base.SaveChangesAsync(cancellationToken);
-        }
-
-        private async Task DispatchDomainEventsAsync(CancellationToken ct)
+        private async Task DispatchDomainEventsAsync(CancellationToken cancellationToken)
         {
             var domainEntities = ChangeTracker.Entries()
-           .Where(e => e.Entity is Entity baseEntity && baseEntity.DomainEvents.Count != 0)
-           .Select(e => (Entity)e.Entity)
-           .ToList();
+                .Where(e => e.Entity is Entity baseEntity && baseEntity.DomainEvents.Count != 0)
+                .Select(e => (Entity)e.Entity)
+                .ToList();
 
-
-            var domainEvents= domainEntities
+            var domainEvents = domainEntities
                 .SelectMany(e => e.DomainEvents)
                 .ToList();
 
             foreach (var domainEvent in domainEvents)
             {
-                await mediator.Publish(domainEvent, ct);
+                await mediator.Publish(domainEvent, cancellationToken);
             }
 
             foreach (var entity in domainEntities)
             {
-               entity.ClearDomainEvent();
+                entity.ClearDomainEvent();
             }
         }
     }
