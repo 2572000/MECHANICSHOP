@@ -16,8 +16,22 @@ using Microsoft.EntityFrameworkCore;
 namespace MechanicShop.Infrastructure.Data
 {
 
-    public class AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator) : IdentityDbContext<AppUser>(options), IAppDbContext
+    public class AppDbContext : IdentityDbContext<AppUser>, IAppDbContext
     {
+        private readonly IMediator _mediator;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator)
+            : base(options)
+        {
+            _mediator = mediator;
+        }
+
+
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Part> Parts => Set<Part>();
         public DbSet<RepairTask> RepairTasks => Set<RepairTask>();
@@ -31,7 +45,9 @@ namespace MechanicShop.Infrastructure.Data
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            await DispatchDomainEventsAsync(cancellationToken);
+            if (_mediator != null)
+                await DispatchDomainEventsAsync(cancellationToken);
+
             return await base.SaveChangesAsync(cancellationToken);
         }
 
@@ -54,7 +70,7 @@ namespace MechanicShop.Infrastructure.Data
 
             foreach (var domainEvent in domainEvents)
             {
-                await mediator.Publish(domainEvent, cancellationToken);
+                await _mediator.Publish(domainEvent, cancellationToken);
             }
 
             foreach (var entity in domainEntities)

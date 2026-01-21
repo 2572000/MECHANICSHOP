@@ -8,8 +8,9 @@ using MechanicShop.Domain.RepairTasks.Parts;
 using MechanicShop.Domain.Workorders;
 using MechanicShop.Domain.Workorders.Enums;
 using MechanicShop.Infrastructure.Identity;
-
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 namespace MechanicShop.Infrastructure.Data;
 
@@ -357,16 +358,16 @@ public class ApplicationDbContextInitialiser(
     }
 }
 
-//public static class InitialiserExtensions
-//{
-//    public static async Task InitialiseDatabaseAsync(this WebApplication app)
-//    {
-//        using var scope = app.Services.CreateScope();
+public static class InitialiserExtensions
+{
+    public static async Task InitialiseDatabaseAsync(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
 
-//        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
 
-//        await initialiser.InitialiseAsync();
+        await initialiser.InitialiseAsync();
 
-//        await initialiser.SeedAsync();
-//    }
-//}
+        await initialiser.SeedAsync();
+    }
+}
