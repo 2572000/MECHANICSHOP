@@ -11,11 +11,11 @@ using Microsoft.Extensions.Logging;
 namespace MechanicShop.Application.Features.Billing.Query.GetInvoiceById
 {
     public class GetInvoiceByIdQueryHandler(IAppDbContext context,
-        Logger<GetInvoiceByIdQueryHandler> logger
+        ILogger<GetInvoiceByIdQueryHandler> logger
         ):IRequestHandler<GetInvoiceByIdQuery, Result<InvoiceDto>>
     {
         private readonly IAppDbContext _context = context;
-        private readonly Logger<GetInvoiceByIdQueryHandler> _logger = logger;
+        private readonly ILogger<GetInvoiceByIdQueryHandler> _logger = logger;
 
         public async Task<Result<InvoiceDto>> Handle(GetInvoiceByIdQuery request, CancellationToken ct)
         {

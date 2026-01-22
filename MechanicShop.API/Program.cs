@@ -1,12 +1,15 @@
 
 using MechanicShop.Application;
 using MechanicShop.Infrastructure;
+using MechanicShop.Infrastructure.Data;
+using MechanicShop.Infrastructure.RealTime;
+using System.Threading.Tasks;
 
 namespace MechanicShop.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +31,7 @@ namespace MechanicShop.API
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                await app.InitialiseDatabaseAsync();
             }
 
             app.UseHttpsRedirection();
@@ -36,6 +40,8 @@ namespace MechanicShop.API
 
 
             app.MapControllers();
+
+            app.MapHub<WorkOrderHub>("/hubs/workorders");
 
             app.Run();
         }

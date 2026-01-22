@@ -10,11 +10,11 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace MechanicShop.Application.Features.Billing.Query.GetInvoicePdf
 {
     public class GetInvoicePdfQueryHandler(IAppDbContext context,
-        Logger<GetInvoicePdfQueryHandler> logger,
+        ILogger<GetInvoicePdfQueryHandler> logger,
         IInvoicePdfGenerator pdfGenerator) :IRequestHandler<GetInvoicePdfQuery, Result<InvoicePdfDto>>
     {
         private readonly IAppDbContext _context = context;
-        private readonly Logger<GetInvoicePdfQueryHandler> _logger = logger;
+        private readonly ILogger<GetInvoicePdfQueryHandler> _logger = logger;
         private readonly IInvoicePdfGenerator _pdfGenerator = pdfGenerator;
 
         public async Task<Result<InvoicePdfDto>> Handle(GetInvoicePdfQuery request, CancellationToken ct)

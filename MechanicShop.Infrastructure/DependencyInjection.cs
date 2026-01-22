@@ -6,6 +6,7 @@ using MechanicShop.Infrastructure.Identity;
 using MechanicShop.Infrastructure.Identity.Policies;
 using MechanicShop.Infrastructure.RealTime;
 using MechanicShop.Infrastructure.Services;
+using MechanicShop.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -105,6 +106,14 @@ namespace MechanicShop.Infrastructure
             services.AddScoped<IWorkOrderNotifier, SignalRWorkOrderNotifier>();
 
             services.AddHostedService<OverdueBookingCleanupService>();
+
+            services.AddHttpContextAccessor();
+            services.AddSignalR();
+            services.AddScoped<IUser, CurrentUser>();
+
+            services.AddOptions<AppSettings>()
+                .Bind(configuration.GetSection("AppSettings"));
+
 
             return services;
         }
