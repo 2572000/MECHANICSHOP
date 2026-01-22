@@ -3,6 +3,7 @@ using MechanicShop.Application;
 using MechanicShop.Infrastructure;
 using MechanicShop.Infrastructure.Data;
 using MechanicShop.Infrastructure.RealTime;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace MechanicShop.API
@@ -34,8 +35,27 @@ namespace MechanicShop.API
                 await app.InitialiseDatabaseAsync();
             }
 
+            #region Migrate Database
+
+            using var scope = app.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<AppDbContext>();
+                await context.Database.MigrateAsync();
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred while migrating or initializing the database.");
+            }
+
+
+            #endregion
+
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
