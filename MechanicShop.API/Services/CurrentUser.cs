@@ -1,8 +1,7 @@
 ﻿using MechanicShop.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace MechanicShop.Infrastructure.Identity
+namespace MechanicShop.API.Services
 {
     public class CurrentUser : IUser
     {
@@ -13,8 +12,6 @@ namespace MechanicShop.Infrastructure.Identity
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string? Id =>
-            _httpContextAccessor.HttpContext?.User?
-                .FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        public string? Id => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

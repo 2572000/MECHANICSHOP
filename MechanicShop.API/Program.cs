@@ -23,7 +23,8 @@ namespace MechanicShop.API
 
             builder.Services
             .AddApplication()
-            .AddInfrastructure(builder.Configuration);
+            .AddInfrastructure(builder.Configuration)
+            .AddPresentation(builder.Configuration);
 
 
             var app = builder.Build();

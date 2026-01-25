@@ -107,9 +107,9 @@ namespace MechanicShop.Infrastructure
 
             services.AddHostedService<OverdueBookingCleanupService>();
 
-            services.AddHttpContextAccessor();
+            //services.AddHttpContextAccessor();
             services.AddSignalR();
-            services.AddScoped<IUser, CurrentUser>();
+            //services.AddScoped<IUser, CurrentUser>();
 
             services.AddOptions<AppSettings>()
                 .Bind(configuration.GetSection("AppSettings"));
