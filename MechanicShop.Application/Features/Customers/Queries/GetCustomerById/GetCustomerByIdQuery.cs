@@ -4,10 +4,8 @@ using MechanicShop.Domain.Common.Results;
 
 namespace MechanicShop.Application.Features.Customers.Queries.GetCustomerById
 {
-    public class GetCustomerByIdQuery:ICachedQuery<Result<CustomerDto>>
+    public record GetCustomerByIdQuery(Guid CustomerId) : ICachedQuery<Result<CustomerDto>>
     {
-        public Guid CustomerId { get; }
-
         public string CacheKey => $"customer_{CustomerId}";
 
         public string[] Tags => ["customer"];

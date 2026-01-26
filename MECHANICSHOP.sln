@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechanicShop.Application", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TEST", "TEST", "{5D50EB2B-AA74-4448-AA96-35196E11F92F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechanicShop.Contracts", "MechanicShop.Contracts\MechanicShop.Contracts.csproj", "{EF880511-5C01-44AC-80FF-E626A91EDECF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{7E1D1F47-2982-4927-8FC5-166166A8C0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E1D1F47-2982-4927-8FC5-166166A8C0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E1D1F47-2982-4927-8FC5-166166A8C0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF880511-5C01-44AC-80FF-E626A91EDECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF880511-5C01-44AC-80FF-E626A91EDECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF880511-5C01-44AC-80FF-E626A91EDECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF880511-5C01-44AC-80FF-E626A91EDECF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{4F5D1F3A-6FD3-41CE-84A5-44D293735567} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{EA14C593-8899-438B-A58B-E2C655E6CE26} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{7E1D1F47-2982-4927-8FC5-166166A8C0D7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{EF880511-5C01-44AC-80FF-E626A91EDECF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD4AD890-E44C-41E1-A36E-FA51200C6B8A}

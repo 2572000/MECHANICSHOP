@@ -2,7 +2,7 @@
 {
     public class AppSettings
     {
-        public TimeOnly OpeningTime { get; set; }
+        public TimeOnly OpeningTime { get; set; } 
         public TimeOnly ClosingTime { get; set; }
         public int MaxSpots { get; set; }
         public int MinimumAppointmentDurationInMinutes { get; set; }

@@ -1,0 +1,117 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@BaseUrl=https://localhost:7012
+@Id=73a04dd3-c81a-4a54-9882-ef1017eb192d
+@MAccessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOWE1OTEyOS02YzIwLTQxN2EtODM0ZC0xMWEyMDhkMzJkOTYiLCJlbWFpbCI6InBtQGxvY2FsaG9zdCIsInJvbGUiOiJNYW5hZ2VyIiwibmJmIjoxNzY5NDM0NDQ2LCJleHAiOjE3Njk0MzUzNDYsImlhdCI6MTc2OTQzNDQ0NiwiaXNzIjoibG9jYWxob3N0IiwiYXVkIjoibG9jYWxob3N0In0.In1aunExhOqJ8OJwYAbuzM8Moujsx5V6S4Odc84eUd8
+@LAccessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiNjMyNzI0MC0wYWVhLTQ2ZmMtODYzYS03NzdmYzRlNDI1NjAiLCJlbWFpbCI6ImpvaG4ubGFib3JAbG9jYWxob3N0Iiwicm9sZSI6IkxhYm9yIiwibmJmIjoxNzY5NDM0MDA5LCJleHAiOjE3Njk0MzQ5MDksImlhdCI6MTc2OTQzNDAwOSwiaXNzIjoibG9jYWxob3N0IiwiYXVkIjoibG9jYWxob3N0In0.lOCu-bstCJ9MbOGwQBi5gJxLj35sKEkp7ummvgWosUE
+
+
+@MRefreshToken=kuRxi1i7E5Bis66AtOWnRqQKiz+z1X69p0C00hD9tGY=
+@LRefreshToken=heBsheuaGj5rv2VpHP7kb1L3fAcpzi21tsILKOfLIlo=
+## Get All Customers
+GET {{BaseUrl}}/api/v1/customers
+Authorization: Bearer {{LAccessToken}}
+
+
+###Get Customers By Id
+GET {{BaseUrl}}/api/v1/customers/{{Id}}
+Authorization: Bearer {{MAccessToken}}
+
+
+###Get Dashboard Details
+GET {{BaseUrl}}/api/v1/dashboard/stats
+
+##########################################
+### Login As Manager
+POST {{baseUrl}}/identity/token/generate
+Content-Type: application/json
+
+{
+    "email": "pm@localhost",
+    "password": "pm@localhost"
+}
+
+### Login As Labor
+POST {{baseUrl}}/identity/token/generate
+Content-Type: application/json
+
+{
+    "email": "john.labor@localhost",
+    "password": "john.labor@localhost"
+}
+
+### Get User Info
+GET {{baseUrl}}/identity/current-user/claims
+Authorization: Bearer {{MAccessToken}}
+
+
+### Refresh Token
+POST {{baseUrl}}/identity/token/refresh-token
+Content-Type: application/json
+
+{
+    "ExpiredAccessToken": "{{MAccessToken}}",
+    "refreshToken": "{{MRefreshToken}}"
+}
+######################################################
+
+## Get All Labors
+GET {{BaseUrl}}/api/v1/labors
+Authorization: Bearer {{MAccessToken}}
+
+
+##################################################
+###### RepairTasks
+
+## Get All RepairTasks
+GET {{BaseUrl}}/api/v1/repair-tasks
+Authorization: Bearer {{LAccessToken}}
+
+### Get  RepairTask By Id
+GET {{BaseUrl}}/api/v1/repair-tasks/20154607-410e-460b-8190-5dc70092c1c1
+Authorization: Bearer {{mAccessToken}}
+
+
+### Create New Repair Task
+put {{BaseUrl}}/api/v1/repair-tasks
+Content-Type: application/json
+Authorization: Bearer {{MAccessToken}}
+
+{
+  "name": "test test test ",
+  "laborCost": 150.00,
+  "estimatedDurationInMins": 90,
+  "parts": [
+    {
+      "name": "test",
+      "quantity": 1,
+      "cost": 15.00
+    }
+  ]
+}
+
+### Update New Repair Task
+put {{BaseUrl}}/api/v1/repair-tasks/20154607-410e-460b-8190-5dc70092c1c1
+Content-Type: application/json
+Authorization: Bearer {{MAccessToken}}
+
+{
+  "name": "test test test ",
+  "laborCost": 150.00,
+  "estimatedDurationInMins": 90,
+  "parts": [
+    {
+      "name": "test",
+      "quantity": 1,
+      "cost": 15.00
+    }
+  ]
+}
+
+
+### Delete 
+Delete {{BaseUrl}}/api/v1/repair-tasks/20154607-410e-460b-8190-5dc70092c1c1
+Authorization: Bearer {{mAccessToken}}
+######################################################
+
+### Get All App Setting  
+GET {{BaseUrl}}/api/settings/operating-hours
