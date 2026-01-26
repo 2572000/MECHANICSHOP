@@ -115,3 +115,10 @@ Authorization: Bearer {{mAccessToken}}
 
 ### Get All App Setting  
 GET {{BaseUrl}}/api/settings/operating-hours
+###########################################################
+
+###Get All WorkOrders
+
+
+###Get Work Order By ID
+GET {{BaseUrl}}/api/v1/workorders/0122B784-7F70-49C9-A3ED-3D52B7141E95

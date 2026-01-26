@@ -5,7 +5,6 @@ using MechanicShop.Application.Features.WorkOrders.Mappers;
 using MechanicShop.Domain.Common.Results;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 
 namespace MechanicShop.Application.Features.WorkOrders.Queries.GetWorkOrderByIdQuery
