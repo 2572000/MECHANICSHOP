@@ -1,9 +1,12 @@
 
+using MechanicShop.API.Infrastructure;
 using MechanicShop.Application;
 using MechanicShop.Infrastructure;
 using MechanicShop.Infrastructure.Data;
 using MechanicShop.Infrastructure.RealTime;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
+using Serilog;
 using System.Threading.Tasks;
 
 namespace MechanicShop.API
@@ -26,6 +29,8 @@ namespace MechanicShop.API
             .AddInfrastructure(builder.Configuration)
             .AddPresentation(builder.Configuration);
 
+            builder.Host.UseSerilog((context, loggerConfig) =>
+                    loggerConfig.ReadFrom.Configuration(context.Configuration));
 
             var app = builder.Build();
 
@@ -33,7 +38,21 @@ namespace MechanicShop.API
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/openapi/v1.json", "MechanicShop API V1");
+
+                    options.EnableDeepLinking();
+                    options.DisplayRequestDuration();
+                    options.EnableFilter();
+                });
+                app.MapScalarApiReference();
                 await app.InitialiseDatabaseAsync();
+                app.UseWebAssemblyDebugging();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             #region Migrate Database
@@ -61,6 +80,8 @@ namespace MechanicShop.API
 
 
             app.MapControllers();
+            //app.UseAntiforgery();
+            app.UseMiddleware<RequestLogContextMiddleware>();
 
             app.MapHub<WorkOrderHub>("/hubs/workorders");
 

@@ -41,7 +41,7 @@ namespace MechanicShop.Application.Features.WorkOrders.Queries.GetWorkOrders
                   {
                       WorkOrderId = wo.Id,
                       InvoiceId = wo.Invoice == null ? null : wo.Invoice.Id,
-                      Spot = wo.Spot,
+                      Spot = wo.Spot.ToString(),
                       StartAtUtc = wo.StartAtUtc,
                       EndAtUtc = wo.EndAtUtc,
                       Vehicle = wo.Vehicle!.ToDto(),
@@ -49,7 +49,7 @@ namespace MechanicShop.Application.Features.WorkOrders.Queries.GetWorkOrders
                       Labor = wo.Labor != null
                         ? wo.Labor.FirstName + " " + wo.Labor.LastName
                         : null,
-                      State = wo.State,
+                      State = wo.State.ToString(),
                       RepairTasks = wo.RepairTasks.Select(rt => rt.Name).ToList()
                   })
                 .ToListAsync(ct);

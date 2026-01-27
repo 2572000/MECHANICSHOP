@@ -19,7 +19,7 @@ namespace MechanicShop.Application.Features.WorkOrders.Mappers
             return new WorkOrderDto
             {
                 WorkOrderId = entity.Id,
-                Spot = entity.Spot,
+                Spot = entity.Spot.ToString(),
                 StartAtUtc = entity.StartAtUtc,
                 EndAtUtc = entity.EndAtUtc,
                 Labor = entity.Labor is null ? null : new LaborDto
@@ -29,7 +29,7 @@ namespace MechanicShop.Application.Features.WorkOrders.Mappers
                 },
                 RepairTasks = entity.RepairTasks.ToDtos(),
                 Vehicle = entity.Vehicle is null ? null : entity.Vehicle.ToDto(),
-                State = entity.State,
+                State = entity.State.ToString(),
                 TotalPartCost = entity.RepairTasks.SelectMany(t => t.Parts).Sum(p => p.Cost * p.Quantity),
                 TotalLaborCost = entity.RepairTasks.Sum(p => p.LaborCost),
                 TotalCost = entity.RepairTasks.Sum(rt => rt.TotalCost),
@@ -52,13 +52,13 @@ namespace MechanicShop.Application.Features.WorkOrders.Mappers
             return new WorkOrderListItemDto
             {
                 WorkOrderId = entity.Id,
-                Spot = entity.Spot,
+                Spot = entity.Spot.ToString(),
                 StartAtUtc = entity.StartAtUtc,
                 EndAtUtc = entity.EndAtUtc,
                 Vehicle = entity.Vehicle!.ToDto(),
                 Labor = entity.Labor is null ? null :
                     $"{entity.Labor.FirstName} {entity.Labor.LastName}",
-                State = entity.State,
+                State = entity.State.ToString(),
                 RepairTasks = entity.RepairTasks.Select(rt => rt.Name).ToList()
             };
         }

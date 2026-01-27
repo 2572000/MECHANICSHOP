@@ -9,13 +9,13 @@ namespace MechanicShop.Application.Features.WorkOrders.Dtos
     {
         public Guid WorkOrderId { get; set; }
         public Guid? InvoiceId { get; set; }
-        public Spot Spot { get; set; }
+        public string Spot { get; set; }
         public VehicleDto? Vehicle { get; set; }
         public DateTimeOffset StartAtUtc { get; set; }
         public DateTimeOffset EndAtUtc { get; set; }
         public List<RepairTaskDto> RepairTasks { get; set; } = [];
         public LaborDto? Labor { get; set; }
-        public WorkOrderState State { get; set; }
+        public string State { get; set; }
         public decimal TotalPartCost { get; set; }
         public decimal TotalLaborCost { get; set; }
         public decimal TotalCost { get; set; }
