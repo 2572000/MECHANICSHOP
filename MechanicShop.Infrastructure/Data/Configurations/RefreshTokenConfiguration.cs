@@ -19,7 +19,7 @@ namespace MechanicShop.Infrastructure.Data.Configurations
 
             builder.Property(rt => rt.UserId).IsRequired();
 
-            builder.Property(rt => rt.ExpiresOnUts).IsRequired();
+            builder.Property(rt => rt.ExpiresOnUtc).IsRequired();
         }
     }
 }

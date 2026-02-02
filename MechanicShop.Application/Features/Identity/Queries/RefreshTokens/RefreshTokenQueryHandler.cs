@@ -46,7 +46,7 @@ namespace MechanicShop.Application.Features.Identity.Queries.RefreshTokens
 
             var refreshToken = await _context.RefreshTokens.FirstOrDefaultAsync(r => r.Token == request.RefreshToken && r.UserId == userId, ct);
             
-            if(refreshToken is null || refreshToken.ExpiresOnUts <DateTime.UtcNow)
+            if(refreshToken is null || refreshToken.ExpiresOnUtc <DateTime.UtcNow)
             {
                 _logger.LogError("Refresh token has expired");
                 return ApplicationErrors.RefreshTokenExpired;

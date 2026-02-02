@@ -159,7 +159,7 @@ namespace MechanicShop.Infrastructure.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("ExpiresOnUts")
+                    b.Property<DateTimeOffset>("ExpiresOnUtc")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<DateTimeOffset>("LastModifiedAtUtc")

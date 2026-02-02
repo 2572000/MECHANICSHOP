@@ -5,7 +5,7 @@ namespace MechanicShop.Domain.Identity
 {
     public sealed class RefreshToken:AuditableEntity
     {
-        public DateTimeOffset ExpiresOnUts { get; }
+        public DateTimeOffset ExpiresOnUtc { get; }
         public string? Token { get;}
         public string? UserId { get;}
 
@@ -19,7 +19,7 @@ namespace MechanicShop.Domain.Identity
         {
             Token = token;
             UserId = userId;
-            ExpiresOnUts = expiresOnUts;
+            ExpiresOnUtc = expiresOnUts;
         }
 
 
