@@ -4,7 +4,7 @@ using MechanicShop.Tests.Common;
 using MechanicShop.Tests.Common.Billing;
 using Xunit;
 
-namespace MechanicShop.Domain.UnitTest.Billing
+namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
 {
     public class InvoiceTests()
     {

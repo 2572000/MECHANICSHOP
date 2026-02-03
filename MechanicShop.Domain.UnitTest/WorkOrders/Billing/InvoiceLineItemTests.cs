@@ -1,7 +1,7 @@
 ﻿using MechanicShop.Domain.Workorders.Billing;
 using Xunit;
 
-namespace MechanicShop.Domain.UnitTest.Billing
+namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
 {
     public class InvoiceLineItemTests
     {
