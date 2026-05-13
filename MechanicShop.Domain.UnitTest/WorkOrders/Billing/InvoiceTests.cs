@@ -47,7 +47,7 @@ namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
             const int discount = 15;
             var invoice = InvoiceFactory.CreateInvoice().Value;
             var originalTotal = invoice.Total;
-            var result = invoice.ApplyDiscount(discount);
+            var result = invoice.ApplayDiscount(discount);
             Assert.True(result.IsSuccess);
             Assert.Equal(discount, invoice.DiscountAmount);
             Assert.Equal(originalTotal - discount, invoice.Total);
@@ -57,7 +57,7 @@ namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
         public void ApplyDiscount_WithNegativeAmount_ShouldFail()
         {
             var invoice = InvoiceFactory.CreateInvoice().Value;
-            var result = invoice.ApplyDiscount(-10);
+            var result = invoice.ApplayDiscount(-10);
             Assert.True(result.IsError);
             Assert.Equal(InvoiceErrors.DiscountNegative.Code, result.TopError.Code);
         }
@@ -67,7 +67,7 @@ namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
         {
             var invoice = InvoiceFactory.CreateInvoice().Value;
             var excessiveDiscount = invoice.Subtotal + 1;
-            var result = invoice.ApplyDiscount(excessiveDiscount);
+            var result = invoice.ApplayDiscount(excessiveDiscount);
             Assert.True(result.IsError);
             Assert.Equal(InvoiceErrors.DiscountExceedsSubtotal.Code, result.TopError.Code);
         }
@@ -77,7 +77,7 @@ namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
         {
             var invoice = InvoiceFactory.CreateInvoice().Value;
             const decimal validDiscount = 20m;
-            var result = invoice.ApplyDiscount(validDiscount);
+            var result = invoice.ApplayDiscount(validDiscount);
             Assert.True(result.IsSuccess);
             Assert.Equal(validDiscount, invoice.DiscountAmount);
         }
@@ -87,7 +87,7 @@ namespace MechanicShop.Domain.UnitTest.WorkOrders.Billing
         {
             var invoice = InvoiceFactory.CreateInvoice().Value;
             Assert.True(invoice.MarkAsPaid(TimeProvider.System).IsSuccess);
-            var result = invoice.ApplyDiscount(10);
+            var result = invoice.ApplayDiscount(10);
             Assert.True(result.IsError);
             Assert.Equal(InvoiceErrors.InvoiceLocked.Code, result.TopError.Code);
         }
